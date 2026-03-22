@@ -1,0 +1,177 @@
+# Risk category taxonomy — drives the entire analysis pipeline
+
+categories:
+  auto_renewal:
+    name: "Auto-Renewal"
+    description: "Clauses that automatically renew the contract unless explicitly cancelled"
+    risk_signals:
+      - "automatic renewal"
+      - "auto-renew"
+      - "shall renew"
+      - "evergreen"
+      - "automatically extend"
+    default_risk: high
+    explanation: >
+      Auto-renewal clauses lock you into recurring obligations.
+      Look for: renewal period length, notice window for cancellation,
+      and whether terms can change upon renewal.
+
+  uncapped_liability:
+    name: "Uncapped Liability"
+    description: "Clauses where liability is unlimited or disproportionately high"
+    risk_signals:
+      - "unlimited liability"
+      - "uncapped"
+      - "no limitation"
+      - "full liability"
+      - "shall be liable for all"
+      - "consequential damages"
+    default_risk: critical
+    explanation: >
+      Uncapped liability means there is no ceiling on what you could owe.
+      Standard practice is to cap liability at 12 months of fees paid
+      or the contract value.
+
+  ip_assignment:
+    name: "IP Assignment"
+    description: "Clauses transferring intellectual property ownership"
+    risk_signals:
+      - "assigns all right"
+      - "intellectual property"
+      - "work product"
+      - "work for hire"
+      - "transfer of ownership"
+      - "all inventions"
+    default_risk: high
+    explanation: >
+      IP assignment clauses transfer ownership of created work.
+      Watch for: scope (all IP vs project-specific), pre-existing IP carve-outs,
+      and whether assignment survives termination.
+
+  non_compete:
+    name: "Non-Compete"
+    description: "Restrictions on competing business activities"
+    risk_signals:
+      - "non-compete"
+      - "non-competition"
+      - "shall not compete"
+      - "competitive activities"
+      - "restricted from"
+    default_risk: high
+    explanation: >
+      Non-competes restrict your ability to work in a field or geography.
+      Enforceability varies wildly by jurisdiction. Look for duration,
+      geographic scope, and definition of 'competing business'.
+
+  indemnification:
+    name: "Indemnification"
+    description: "Obligations to cover losses or damages for the other party"
+    risk_signals:
+      - "indemnify"
+      - "hold harmless"
+      - "defend and indemnify"
+      - "indemnification"
+    default_risk: medium
+    explanation: >
+      Indemnification shifts risk. One-sided indemnification where only you
+      bear the obligation is a red flag. Mutual indemnification is standard.
+
+  termination:
+    name: "Termination"
+    description: "Conditions under which the contract can be ended"
+    risk_signals:
+      - "termination for convenience"
+      - "terminate at any time"
+      - "termination without cause"
+      - "right to terminate"
+      - "cancellation"
+    default_risk: medium
+    explanation: >
+      Look for: whether termination is mutual, notice period required,
+      fees or penalties for early termination, and what happens to
+      ongoing obligations after termination.
+
+  confidentiality:
+    name: "Confidentiality / NDA"
+    description: "Obligations around handling confidential information"
+    risk_signals:
+      - "confidential information"
+      - "non-disclosure"
+      - "proprietary information"
+      - "trade secret"
+    default_risk: low
+    explanation: >
+      Standard in most contracts. Red flags: perpetual duration,
+      overly broad definition of confidential information, or
+      one-sided obligations.
+
+  governing_law:
+    name: "Governing Law & Jurisdiction"
+    description: "Which laws govern the contract and where disputes are resolved"
+    risk_signals:
+      - "governing law"
+      - "jurisdiction"
+      - "venue"
+      - "arbitration"
+      - "dispute resolution"
+    default_risk: medium
+    explanation: >
+      Determines where you'd have to litigate disputes. Unfavorable
+      jurisdiction (e.g., another country) increases cost and risk.
+      Mandatory arbitration removes your right to trial.
+
+  payment_terms:
+    name: "Payment Terms"
+    description: "Payment schedules, late fees, and financial obligations"
+    risk_signals:
+      - "payment terms"
+      - "net 30"
+      - "net 60"
+      - "late fee"
+      - "interest rate"
+      - "penalty"
+    default_risk: low
+    explanation: >
+      Check for: payment timing, late payment penalties, right to
+      withhold payment for disputes, and currency specifications.
+
+  force_majeure:
+    name: "Force Majeure"
+    description: "Provisions for unforeseeable circumstances"
+    risk_signals:
+      - "force majeure"
+      - "act of god"
+      - "unforeseeable"
+      - "beyond reasonable control"
+    default_risk: low
+    explanation: >
+      Standard clause but check if it's mutual and whether pandemic/
+      supply chain disruption are explicitly included. Absence of this
+      clause is itself a risk flag.
+
+risk_levels:
+  critical:
+    score_range: [0.85, 1.0]
+    color: "#DC2626"
+    label: "Critical Risk"
+  high:
+    score_range: [0.7, 0.85]
+    color: "#EA580C"
+    label: "High Risk"
+  medium:
+    score_range: [0.4, 0.7]
+    color: "#CA8A04"
+    label: "Medium Risk"
+  low:
+    score_range: [0.0, 0.4]
+    color: "#16A34A"
+    label: "Low Risk"
+
+# Clauses that SHOULD exist — flag if missing
+expected_clauses:
+  - termination
+  - liability_cap
+  - confidentiality
+  - governing_law
+  - force_majeure
+  - indemnification
