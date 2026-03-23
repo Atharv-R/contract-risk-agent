@@ -1,4 +1,4 @@
-# 🔍 Contract Risk Agent
+# Contract Risk Agent
 
 **Agentic AI Contract Risk Analysis that identifies risky clauses, compares them against industry baselines, and generates plain-English risk reports.**
 
@@ -34,31 +34,8 @@ Upload a contract PDF and then watch the AI agent analyze every clause. Get a sc
 
 ---
 
-## Architecture
-┌────────────────────────────────────────────────────────────┐
-│                   Streamlit Dashboard                       │
-│            Upload PDF → Watch Agent → Risk Report           │
-└──────────────────────────┬─────────────────────────────────┘
-│
-┌──────────────────────────▼─────────────────────────────────┐
-│                  LangGraph Agent Pipeline                    │
-│                                                             │
-│   PDF Parser ──→ Clause Chunker ──→ NER Extraction          │
-│        │                                 │                  │
-│        ▼                                 ▼                  │
-│   For each clause:                                          │
-│     1. RAG retrieves baseline from clause library           │
-│     2. LLM analyzes risk against baseline                   │
-│     3. Scores 0.0-1.0 with plain-English explanation        │
-│        │                                                    │
-│        ▼                                                    │
-│   Missing clause detection → Executive summary → Report     │
-└─────────────────────────────────────────────────────────────┘
-│                    │                    │
-ChromaDB            Groq / Gemini        PDF Export
-(Vector Store)      (LLM Provider)       (fpdf2)
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Component | Technology | Purpose |
 |---|---|---|
@@ -71,11 +48,11 @@ ChromaDB            Groq / Gemini        PDF Export
 | Frontend | Streamlit | Interactive dashboard |
 | Report Export | fpdf2 | Professional PDF risk reports |
 
-**Total cost: $0** — all free-tier APIs and local models.
+**Total cost: $0** : all free-tier APIs and local models.
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Python 3.10 or higher
