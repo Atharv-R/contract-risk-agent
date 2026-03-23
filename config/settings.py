@@ -4,8 +4,10 @@ Centralized configuration — loads from .env, validates with Pydantic.
 from pathlib import Path
 from pydantic_settings import BaseSettings
 from pydantic import Field
+from dotenv import load_dotenv
+import os
 
-
+load_dotenv()
 class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
 
