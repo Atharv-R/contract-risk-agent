@@ -8,7 +8,7 @@ Upload a contract PDF and then watch the AI agent analyze every clause. Get a sc
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python)
 ![License](https://img.shields.io/badge/License-MIT-green)
-![LLM](https://img.shields.io/badge/LLM-Llama_3.3_70B-orange)
+![LLM](https://img.shields.io/badge/LLM-GPT--OSS_120B-orange)
 ![RAG](https://img.shields.io/badge/RAG-ChromaDB-purple)
 
 ---
@@ -43,7 +43,7 @@ Upload a contract PDF and then watch the AI agent analyze every clause. Get a sc
 | NER | spaCy | Extract parties, dates, money, jurisdictions |
 | Embeddings | sentence-transformers (MiniLM) | Local vector embeddings (384-dim) |
 | Vector Store | ChromaDB | Persistent RAG storage for clause library |
-| LLM | Groq (Llama 3.3 70B) / Google Gemini | Clause risk analysis and report generation |
+| LLM | Groq (GPT-OSS 120B) / Google Gemini | Clause risk analysis and report generation |
 | Agent Framework | LangGraph | State machine orchestrating the analysis pipeline |
 | Frontend | Streamlit | Interactive dashboard |
 | Report Export | fpdf2 | Professional PDF risk reports |

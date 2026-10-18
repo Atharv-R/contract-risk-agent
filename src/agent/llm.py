@@ -15,7 +15,7 @@ Provider priority:
   1. Whatever LLM_PROVIDER is set to in .env (groq or gemini)
   2. Falls back to the other if the primary fails
 
-Groq free tier:  30 requests/min, runs Llama 3.3 70B — excellent for analysis.
+Groq free tier:  30 requests/min, runs GPT-OSS 120B — excellent for analysis.
 Gemini free tier: 15 requests/min, runs Gemini 2.0 Flash.
 """
 
@@ -37,7 +37,7 @@ def _call_groq(
     temperature: float = 0.1,
     max_tokens: int = 4096,
 ) -> str:
-    """Call Groq's API (Llama 3.3 70B)."""
+    """Call Groq's API (GPT-OSS 120B, with fallbacks)."""
     from groq import Groq
 
     api_key = os.getenv("GROQ_API_KEY")
@@ -53,9 +53,9 @@ def _call_groq(
 
     # Models to try in order
     models = [
-        "llama-3.3-70b-versatile",
-        "llama-3.1-8b-instant",
-        "gemma2-9b-it",
+        "openai/gpt-oss-120b",
+        "openai/gpt-oss-20b",
+        "qwen/qwen3.8-27b",
     ]
 
     for model in models:
@@ -69,7 +69,7 @@ def _call_groq(
             return response.choices[0].message.content
         except Exception as e:
             error_msg = str(e).lower()
-            if "not found" in error_msg or "not exist" in error_msg:
+            if any(x in error_msg for x in ["not found", "not exist", "decommissioned"]):
                 continue  # Try next model
             raise  # Re-raise rate limits and other errors
 
