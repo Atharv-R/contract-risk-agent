@@ -12,7 +12,7 @@ class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
 
     # --- LLM ---
-    gemini_api_key: str = Field(..., description="Google Gemini API key")
+    gemini_api_key: str = Field(default="", description="Google Gemini API key (optional)")
     gemini_model: str = Field(default="gemini-2.0-flash")
     llm_temperature: float = Field(default=0.1)  # Low temp for consistency
     llm_max_tokens: int = Field(default=4096)

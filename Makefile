@@ -11,7 +11,7 @@ setup:
 # Install all dependencies
 install:
 	pip install --upgrade pip
-	pip install -r requirements.txt
+	pip install -r requirements-final.txt
 	python -m spacy download en_core_web_sm
 	@echo ""
 	@echo "================================================"

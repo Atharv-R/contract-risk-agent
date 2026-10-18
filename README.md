@@ -73,16 +73,13 @@ python -m venv .venv
 # On Mac/Linux:
 source .venv/bin/activate
 
-# 3. Install dependencies
-conda install -c conda-forge hnswlib
-conda install -c conda-forge pytesseract
-pip install -r requirements-safe.txt
-pip install chromadb --no-build-isolation --prefer-binary
-pip install torch torchvision torchaudio
-pip install sentence-transformers
-pip install spacy
-python -m spacy download en_core_web_sm
+# 3. Install dependencies (exact pinned versions, includes the spaCy model)
+pip install -r requirements-final.txt
 pip check
+
+# Windows only: if chromadb/hnswlib fails to build, install it from conda first:
+#   conda install -c conda-forge hnswlib
+#   pip install chromadb --no-build-isolation --prefer-binary
 
 # 4. Configure API key
 # IMPORTANT!! Edit .env and add your GROQ_API_KEY
